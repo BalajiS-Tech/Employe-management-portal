@@ -1,0 +1,282 @@
+<section class="add-employee-page">
+
+  <!-- Page heading -->
+  <header class="page-title">
+
+    <a
+      routerLink="/employees"
+      class="back-button"
+      aria-label="Back to employees"
+    >
+      ←
+    </a>
+
+    <div>
+      <h1>Add Employee</h1>
+      <p>Create a new employee record</p>
+    </div>
+
+  </header>
+
+
+  <!-- Employee form -->
+  <section class="form-card">
+
+    <div class="section-title">
+      Personal Information
+    </div>
+
+
+    <form
+      [formGroup]="employeeForm"
+      (ngSubmit)="addEmployee()"
+    >
+
+      <div class="form-layout">
+
+
+        <!-- Left side fields -->
+        <div class="left-fields">
+
+          <!-- Employee ID -->
+          <label>
+            Employee ID <span>*</span>
+
+            <input
+              type="text"
+              formControlName="id"
+              placeholder="Enter employee ID"
+            >
+
+            @if (id.touched && id.hasError('required')) {
+              <small>Employee ID is required.</small>
+            }
+
+            @if (id.touched && id.hasError('pattern')) {
+              <small>Numbers only.</small>
+            }
+
+          </label>
+
+
+          <!-- Full name -->
+          <label>
+            Full Name <span>*</span>
+
+            <input
+              type="text"
+              formControlName="name"
+              placeholder="Enter full name"
+            >
+
+            @if (name.touched && name.invalid) {
+              <small>Enter at least 3 characters.</small>
+            }
+
+          </label>
+
+
+          <!-- Department -->
+          <label>
+            Department <span>*</span>
+
+            <select formControlName="department">
+
+              <option value="">
+                Select department
+              </option>
+
+              <option value="Development">
+                Development
+              </option>
+
+              <option value="Design">
+                Design
+              </option>
+
+              <option value="Testing">
+                Testing
+              </option>
+
+              <option value="HR">
+                HR
+              </option>
+
+            </select>
+
+            @if (department.touched && department.invalid) {
+              <small>Department is required.</small>
+            }
+
+          </label>
+
+
+          <!-- Status -->
+          <label>
+            Status <span>*</span>
+
+            <select formControlName="status">
+
+              <option value="Active">
+                Active
+              </option>
+
+              <option value="Inactive">
+                Inactive
+              </option>
+
+            </select>
+
+          </label>
+
+        </div>
+
+
+        <!-- Right side fields -->
+        <div class="right-fields">
+
+          <!-- Email -->
+          <label>
+            Email <span>*</span>
+
+            <input
+              type="email"
+              formControlName="email"
+              placeholder="Enter email"
+            >
+
+            @if (email.touched && email.invalid) {
+              <small>Enter a valid email address.</small>
+            }
+
+          </label>
+
+
+          <!-- Role -->
+          <label>
+            Role <span>*</span>
+
+            <select formControlName="role">
+
+              <option value="">
+                Select role
+              </option>
+
+              <option value="Frontend Developer">
+                Frontend Developer
+              </option>
+
+              <option value="Backend Developer">
+                Backend Developer
+              </option>
+
+              <option value="Full Stack Developer">
+                Full Stack Developer
+              </option>
+
+              <option value="UI/UX Designer">
+                UI/UX Designer
+              </option>
+
+              <option value="Tester">
+                Tester
+              </option>
+
+              <option value="HR Executive">
+                HR Executive
+              </option>
+
+            </select>
+
+            @if (role.touched && role.invalid) {
+              <small>Role is required.</small>
+            }
+
+          </label>
+
+
+          <!-- Phone -->
+          <label>
+            Phone <span>*</span>
+
+            <input
+              type="text"
+              formControlName="phone"
+              placeholder="10 digit phone number"
+            >
+
+            @if (phone.touched && phone.invalid) {
+              <small>Enter a valid 10 digit number.</small>
+            }
+
+          </label>
+
+
+          <!-- Profile photo -->
+          <div class="profile-box">
+
+            <div class="profile-circle">
+              👤
+            </div>
+
+            <button
+              type="button"
+              class="upload-button"
+            >
+              Upload Photo
+            </button>
+
+            <p>JPG, PNG (Max 2MB)</p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Success message -->
+      @if (successMessage) {
+
+        <div class="success-message">
+          {{ successMessage }}
+        </div>
+
+      }
+
+
+      <!-- Error message -->
+      @if (errorMessage) {
+
+        <div class="error-message">
+          {{ errorMessage }}
+        </div>
+
+      }
+
+
+      <!-- Form actions -->
+      <footer class="form-actions">
+
+        <a
+          routerLink="/employees"
+          class="cancel-button"
+        >
+          Cancel
+        </a>
+
+        <button
+          type="submit"
+          class="save-button"
+          [disabled]="isSubmitting"
+        >
+          {{ isSubmitting ? 'Saving...' : 'Save Employee' }}
+        </button>
+
+      </footer>
+
+    </form>
+
+  </section>
+
+</section>

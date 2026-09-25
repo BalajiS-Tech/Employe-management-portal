@@ -1,0 +1,193 @@
+<section class="dashboard">
+
+  <!-- Dashboard heading -->
+  <header class="heading">
+    <h1>Dashboard</h1>
+    <p>Welcome back, Balaji!</p>
+  </header>
+
+
+  <!-- API error -->
+  @if (errorMessage()) {
+    <div class="error">
+      {{ errorMessage() }}
+    </div>
+  }
+
+
+  <!-- Statistics -->
+  <div class="stats">
+
+    <article>
+      <div class="icon employees">♟</div>
+
+      <strong>
+        {{ employees() }}
+      </strong>
+
+      <!-- <span>
+        Total Employees
+      </span> -->
+    </article>
+
+
+    <article>
+      <div class="icon projects">▣</div>
+
+      <strong>
+        {{ projects() }}
+      </strong>
+
+      <span>
+        Total Projects
+      </span>
+    </article>
+
+
+    <article>
+      <div class="icon pending">◷</div>
+
+      <strong>
+        {{ pending() }}
+      </strong>
+
+      <span class="red">
+        Pending Tasks
+      </span>
+    </article>
+
+
+    <article>
+      <div class="icon completed">✓</div>
+
+      <strong>
+        {{ completed() }}
+      </strong>
+
+      <span class="green">
+        Completed Tasks
+      </span>
+    </article>
+
+  </div>
+
+
+  <!-- Charts -->
+  <div class="charts">
+
+    <!-- Task status -->
+    <article class="chart-card">
+
+      <h2>Tasks Status</h2>
+
+      <div class="task-chart">
+
+        <div
+          class="donut"
+          [style.background]="
+            totalTasks()
+              ? 'conic-gradient(' +
+                '#25b879 0deg ' +
+                (completed() / totalTasks() * 360) +
+                'deg, ' +
+                '#2876e8 ' +
+                (completed() / totalTasks() * 360) +
+                'deg ' +
+                ((completed() + inProgress()) / totalTasks() * 360) +
+                'deg, ' +
+                '#f4a21a ' +
+                ((completed() + inProgress()) / totalTasks() * 360) +
+                'deg 360deg)'
+              : 'conic-gradient(#e8edf2 0 360deg)'
+          "
+        >
+
+          <div>
+            <strong>
+              {{ totalTasks() }}
+            </strong>
+
+            <span>
+              Tasks
+            </span>
+          </div>
+
+        </div>
+
+
+        <!-- Chart legend -->
+        <div class="legend">
+
+          <div>
+            <i class="green-dot"></i>
+
+            <span>
+              Completed
+              <b>{{ completed() }}</b>
+            </span>
+          </div>
+
+
+          <div>
+            <i class="blue-dot"></i>
+
+            <span>
+              In Progress
+              <b>{{ inProgress() }}</b>
+            </span>
+          </div>
+
+
+          <div>
+            <i class="orange-dot"></i>
+
+            <span>
+              Pending
+              <b>{{ pending() }}</b>
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- Project overview -->
+    <article class="chart-card">
+
+      <h2>Project Overview</h2>
+
+      <div class="bars">
+
+        <div>
+          <b>Planning</b>
+          <i style="height: 90px"></i>
+        </div>
+
+
+        <div>
+          <b>In Progress</b>
+          <i style="height: 150px"></i>
+        </div>
+
+
+        <div>
+          <b>On Hold</b>
+          <i style="height: 70px"></i>
+        </div>
+
+
+        <div>
+          <b>Completed</b>
+          <i style="height: 35px"></i>
+        </div>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>

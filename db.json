@@ -1,0 +1,105 @@
+{
+  "employees": [
+    {
+      "id": "1",
+      "name": "Balaji",
+      "email": "user1@example.com",
+      "phone": "9876543210",
+      "department": "Development",
+      "role": "Frontend Developer",
+      "status": "Active"
+    },
+    {
+      "id": "2",
+      "name": "User 2",
+      "email": "user2@example.com",
+      "phone": "9876543211",
+      "department": "Testing",
+      "role": "Tester",
+      "status": "Active"
+    },
+    {
+      "id": "3",
+      "name": "User 3",
+      "email": "user3@example.com",
+      "phone": "9876543212",
+      "department": "HR",
+      "role": "HR Executive",
+      "status": "Inactive"
+    },
+    {
+      "id": "4",
+      "name": "arun",
+      "email": "balajineetvit@gmail.com",
+      "department": "HR",
+      "role": "HR Executive",
+      "status": "Active",
+      "phone": "7904905076"
+    }
+  ],
+  "projects": [
+    {
+      "id": "P-101",
+      "name": "Employee Portal",
+      "description": "Internal portal for employee and project management.",
+      "manager": "Balaji",
+      "startDate": "2026-08-01",
+      "endDate": "2027-07-15",
+      "status": "In Progress",
+      "progress": 65
+    },
+    {
+      "id": "P-102",
+      "name": "Mobile App",
+      "description": "Responsive mobile experience for project teams.",
+      "manager": "User 1",
+      "startDate": "2026-09-01",
+      "endDate": "2026-11-20",
+      "status": "Planning",
+      "progress": 20
+    },
+    {
+      "id": "P-103",
+      "name": "QA Automation",
+      "description": "Automate regression tests for core workflows.",
+      "manager": "User 2",
+      "startDate": "2026-07-10",
+      "endDate": "2026-09-30",
+      "status": "On Hold",
+      "progress": 45
+    }
+  ],
+  "tasks": [
+    {
+      "id": "T-101",
+      "title": "Build employee list",
+      "description": "Create searchable employee table and actions.",
+      "employeeId": "1",
+      "projectId": "P-101",
+      "status": "Completed",
+      "priority": "High",
+      "dueDate": "2026-09-10"
+    },
+    {
+      "id": "T-103",
+      "title": "Write regression cases",
+      "description": "Prepare regression cases for employee CRUD.",
+      "employeeId": "2",
+      "projectId": "P-103",
+      "status": "Pending",
+      "priority": "Medium",
+      "dueDate": "2026-09-25"
+    },
+    {
+      "id": "T-104",
+      "title": "Update HR records",
+      "description": "Review and update HR employee records.",
+      "employeeId": "3",
+      "projectId": "P-102",
+      "status": "Completed",
+      "priority": "Low",
+      "dueDate": "2026-09-28"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

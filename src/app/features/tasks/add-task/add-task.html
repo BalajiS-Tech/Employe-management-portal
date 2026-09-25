@@ -1,0 +1,120 @@
+<section class="form-page">
+
+  <header>
+    <a routerLink="/tasks">←</a>
+
+    <div>
+      <h1>Add Task</h1>
+      <p>Create, assign and schedule a task</p>
+    </div>
+  </header>
+
+  <form [formGroup]="form" (ngSubmit)="save()">
+
+    <h2>Task Information</h2>
+
+    <div class="grid">
+
+      <label>
+        Task ID *
+        <input
+          formControlName="id"
+          placeholder="e.g. T-101"
+        />
+      </label>
+
+      <label>
+        Title *
+        <input
+          formControlName="title"
+          placeholder="Task title"
+        />
+      </label>
+
+      <label>
+        Employee *
+        <select formControlName="employeeId">
+          <option value="">Select employee</option>
+
+          @for (employee of employees; track employee.id) {
+            <option [value]="employee.id">
+              {{ employee.name }}
+            </option>
+          }
+        </select>
+      </label>
+
+      <label>
+        Project *
+        <select formControlName="projectId">
+          <option value="">Select project</option>
+
+          @for (project of projects; track project.id) {
+            <option [value]="project.id">
+              {{ project.name }}
+            </option>
+          }
+        </select>
+      </label>
+
+      <label>
+        Status *
+        <select formControlName="status">
+          <option>Pending</option>
+          <option>In Progress</option>
+          <option>Completed</option>
+        </select>
+      </label>
+
+      <label>
+        Priority *
+        <select formControlName="priority">
+          <option>Low</option>
+          <option>Medium</option>
+          <option>High</option>
+        </select>
+      </label>
+
+      <label>
+        Due Date *
+        <input
+          type="date"
+          formControlName="dueDate"
+        />
+      </label>
+
+      <label class="wide">
+        Description *
+        <textarea
+          rows="4"
+          formControlName="description"
+          placeholder="Describe the task"
+        ></textarea>
+      </label>
+
+    </div>
+
+    @if (errorMessage) {
+      <div class="error">
+        {{ errorMessage }}
+      </div>
+    }
+
+    <footer>
+
+      <a routerLink="/tasks">
+        Cancel
+      </a>
+
+      <button
+        type="submit"
+        [disabled]="saving"
+      >
+        {{ saving ? 'Saving...' : 'Save Task' }}
+      </button>
+
+    </footer>
+
+  </form>
+
+</section>

@@ -1,0 +1,331 @@
+.dashboard {
+  padding: 28px 30px;
+  background: #f8fafc;
+  min-height: 100%;
+}
+
+
+/* Dashboard heading */
+
+.heading {
+  margin-bottom: 22px;
+}
+
+.heading h1 {
+  margin: 0;
+  font-size: 27px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.heading p {
+  margin: 6px 0 0;
+  color: #7c8794;
+  font-size: 13px;
+}
+
+
+/* Error message */
+
+.error {
+  margin-bottom: 15px;
+  padding: 11px;
+
+  background: #fff0f0;
+  color: #c43b3b;
+
+  border-radius: 6px;
+
+  font-size: 12px;
+}
+
+
+/* Statistics cards */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.stats article {
+  min-height: 150px;
+
+  padding: 19px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5eaf0;
+  border-radius: 6px;
+}
+
+
+/* Statistic icons */
+
+.icon {
+  width: 43px;
+  height: 43px;
+
+  display: grid;
+  place-items: center;
+
+  margin-bottom: 9px;
+
+  border-radius: 50%;
+
+  font-size: 20px;
+}
+
+.employees {
+  background: #e9f2ff;
+  color: #4c8ee8;
+}
+
+.projects {
+  background: #e7f8ed;
+  color: #20ae65;
+}
+
+.pending {
+  background: #fff3dc;
+  color: #f4a31c;
+}
+
+.completed {
+  background: #f1e5ff;
+  color: #8c3fe0;
+}
+
+
+/* Statistic values */
+
+.stats strong {
+  display: block;
+  font-size: 27px;
+  color: #1f2937;
+}
+
+.stats span {
+  color: #667085;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.stats .red {
+  color: #dc5353;
+}
+
+.stats .green {
+  color: #3ca273;
+}
+
+
+/* Chart section */
+
+.charts {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 18px;
+
+  margin-top: 18px;
+}
+
+.chart-card {
+  min-height: 310px;
+
+  padding: 20px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5eaf0;
+  border-radius: 6px;
+}
+
+.chart-card h2 {
+  margin: 0;
+
+  color: #1f2937;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+
+/* Task donut chart */
+
+.task-chart {
+  height: 245px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 45px;
+}
+
+.donut {
+  width: 175px;
+  height: 175px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+}
+
+.donut > div {
+  width: 108px;
+  height: 108px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+}
+
+.donut strong {
+  font-size: 24px;
+  color: #1f2937;
+}
+
+.donut span {
+  color: #7c8794;
+  font-size: 11px;
+}
+
+
+/* Chart legend */
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.legend > div {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+}
+
+.legend i {
+  width: 9px;
+  height: 9px;
+
+  margin-top: 3px;
+
+  border-radius: 50%;
+}
+
+.green-dot {
+  background: #25b879;
+}
+
+.blue-dot {
+  background: #2876e8;
+}
+
+.orange-dot {
+  background: #f4a21a;
+}
+
+.legend span {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  color: #667085;
+  font-size: 11px;
+}
+
+.legend b {
+  color: #344054;
+  font-size: 12px;
+}
+
+
+/* Project overview bar chart */
+
+.bars {
+  height: 245px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+
+  padding-top: 15px;
+
+  border-bottom: 1px solid #e5e8ed;
+}
+
+.bars div {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 5px;
+}
+
+.bars i {
+  width: 36px;
+
+  background: #377fe0;
+
+  border-radius: 2px 2px 0 0;
+}
+
+.bars b {
+  color: #5d6977;
+  font-size: 9px;
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+
+/* Tablet */
+
+@media (max-width: 1000px) {
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .charts {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+  .dashboard {
+    padding: 20px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .task-chart {
+    height: auto;
+
+    flex-direction: column;
+
+    padding: 25px 0;
+  }
+
+  .charts {
+    gap: 15px;
+  }
+
+}

@@ -1,0 +1,130 @@
+<section class="form-page">
+
+  <header>
+
+    <a routerLink="/projects">
+      ←
+    </a>
+
+    <div>
+      <h1>Add Project</h1>
+      <p>Create a project and start tracking progress</p>
+    </div>
+
+  </header>
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="save()"
+  >
+
+    <h2>Project Information</h2>
+
+    <div class="grid">
+
+      <label>
+        Project ID *
+
+        <input
+          formControlName="id"
+          placeholder="e.g. P-101"
+        />
+      </label>
+
+      <label>
+        Project Name *
+
+        <input
+          formControlName="name"
+          placeholder="Enter project name"
+        />
+      </label>
+
+      <label>
+        Manager *
+
+        <input
+          formControlName="manager"
+          placeholder="Project manager"
+        />
+      </label>
+
+      <label>
+        Status *
+
+        <select formControlName="status">
+          <option>Planning</option>
+          <option>In Progress</option>
+          <option>On Hold</option>
+          <option>Completed</option>
+        </select>
+
+      </label>
+
+      <label>
+        Start Date *
+
+        <input
+          type="date"
+          formControlName="startDate"
+        />
+      </label>
+
+      <label>
+        End Date *
+
+        <input
+          type="date"
+          formControlName="endDate"
+        />
+      </label>
+
+      <label>
+        Progress (%)
+
+        <input
+          type="number"
+          formControlName="progress"
+          min="0"
+          max="100"
+        />
+      </label>
+
+      <label class="wide">
+        Description *
+
+        <textarea
+          formControlName="description"
+          rows="4"
+          placeholder="Describe the project"
+        ></textarea>
+      </label>
+
+    </div>
+
+    @if (errorMessage) {
+
+      <div class="error">
+        {{ errorMessage }}
+      </div>
+
+    }
+
+    <footer>
+
+      <a routerLink="/projects">
+        Cancel
+      </a>
+
+      <button
+        type="submit"
+        [disabled]="saving"
+      >
+        {{ saving ? 'Saving...' : 'Save Project' }}
+      </button>
+
+    </footer>
+
+  </form>
+
+</section>

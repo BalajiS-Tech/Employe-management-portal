@@ -1,0 +1,321 @@
+<section class="employees-page">
+
+  <!-- Page Header -->
+  <app-page-header
+    title="Employees"
+    subtitle="Manage your employees"
+    buttonLabel="+ Add Employee"
+    (action)="openAddEmployee()">
+  </app-page-header>
+
+
+  <!-- Search and Filter Card -->
+  <section class="filter-card">
+
+    <!-- Search -->
+    <div class="search-box">
+      <span>⌕</span>
+
+      <input
+        #searchInput
+        [formControl]="searchControl"
+        type="search"
+        placeholder="Search employees..."
+      />
+    </div>
+
+
+    <!-- Filter Button -->
+    <button
+      type="button"
+      class="filter-button"
+      (click)="toggleFilters()"
+    >
+      ☰ Filter
+    </button>
+
+
+    <!-- Clear -->
+    <button
+      type="button"
+      class="clear-button"
+      (click)="clearFilters()"
+    >
+      Clear
+    </button>
+
+  </section>
+
+
+  <!-- Filter Options -->
+  @if (showFilters) {
+
+    <section class="filter-options">
+
+      <!-- Department -->
+      <div class="filter-group">
+
+        <label for="department">
+          Department
+        </label>
+
+        <select
+          id="department"
+          [(ngModel)]="department"
+        >
+
+          <option value="All Departments">
+            All Departments
+          </option>
+
+          <option value="Development">
+            Development
+          </option>
+
+          <option value="Design">
+            Design
+          </option>
+
+          <option value="Testing">
+            Testing
+          </option>
+
+          <option value="HR">
+            HR
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- Status -->
+      <div class="filter-group">
+
+        <label for="status">
+          Status
+        </label>
+
+        <select
+          id="status"
+          [(ngModel)]="status"
+        >
+
+          <option value="All Status">
+            All Status
+          </option>
+
+          <option value="Active">
+            Active
+          </option>
+
+          <option value="Inactive">
+            Inactive
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- Apply -->
+      <button
+        type="button"
+        class="apply-button"
+        (click)="applyFilters()"
+      >
+        Apply Filter
+      </button>
+
+
+      <!-- Clear -->
+      <button
+        type="button"
+        class="clear-filter-button"
+        (click)="clearFilters()"
+      >
+        Clear Filters
+      </button>
+
+    </section>
+
+  }
+
+
+  <!-- Error -->
+  @if (errorMessage) {
+
+    <div class="error-banner">
+      {{ errorMessage }}
+    </div>
+
+  }
+
+
+  <!-- Loading -->
+  @if (loading) {
+
+    <div class="loading">
+      Loading employees...
+    </div>
+
+  }
+
+
+  <!-- Employee Table -->
+  <section class="table-card">
+
+    @if (!loading && filteredEmployees.length === 0) {
+
+      <app-empty-state
+        title="No employees found"
+        message="Try changing your search or filters.">
+
+        <ng-template #action>
+
+          <a
+            routerLink="/employees/add"
+            class="empty-action"
+          >
+            Add an employee
+          </a>
+
+        </ng-template>
+
+      </app-empty-state>
+
+    }
+
+    @else {
+
+      <div class="table-scroll">
+
+        <table>
+
+          <thead>
+
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Department</th>
+              <th>Role</th>
+              <th>Phone</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+            @for (
+              employee of filteredEmployees;
+              track employee.id
+            ) {
+
+              <tr>
+
+                <!-- ID -->
+                <td>
+                  {{ employee.id }}
+                </td>
+
+
+                <!-- Name -->
+                <td>
+
+                  <a
+                    class="name-link"
+                    [routerLink]="['/employees', employee.id]"
+                  >
+                    {{ employee.name }}
+                  </a>
+
+                </td>
+
+
+                <!-- Email -->
+                <td>
+                  {{ employee.email }}
+                </td>
+
+
+                <!-- Department -->
+                <td>
+                  {{ employee.department }}
+                </td>
+
+
+                <!-- Role -->
+                <td>
+                  {{ employee.role || '-' }}
+                </td>
+
+
+                <!-- Phone -->
+                <td>
+                  {{ employee.phone }}
+                </td>
+
+
+                <!-- Status -->
+                <td>
+
+                  <span
+                    class="status"
+                    [appStatusBadge]="employee.status"
+                  >
+                    {{ employee.status | statusLabel }}
+                  </span>
+
+                </td>
+
+
+                <!-- Actions -->
+                <td class="actions">
+
+                  <!-- Edit -->
+                  <a
+                    class="icon-button edit"
+                    [routerLink]="[
+                      '/employees',
+                      employee.id,
+                      'edit'
+                    ]"
+                    title="Edit employee"
+                    aria-label="Edit employee"
+                  >
+                    ✎
+                  </a>
+
+
+                  <!-- Delete -->
+                  <button
+                    class="icon-button delete"
+                    type="button"
+                    (click)="deleteEmployee(employee.id)"
+                    title="Delete employee"
+                    aria-label="Delete employee"
+                  >
+                    ⌫
+                  </button>
+
+                </td>
+
+              </tr>
+
+            }
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    }
+
+  </section>
+
+</section>

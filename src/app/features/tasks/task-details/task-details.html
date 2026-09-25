@@ -1,0 +1,130 @@
+<section class="details-page">
+
+  @if (loading) {
+    <div class="message">
+      Loading task...
+    </div>
+  }
+
+  @if (errorMessage) {
+    <div class="error">
+      {{ errorMessage }}
+    </div>
+  }
+
+  @if (task && !loading) {
+
+    <header>
+
+      <div>
+
+        <a routerLink="/tasks">
+          ←
+        </a>
+
+        <div>
+
+          <h1>
+            Task Details
+          </h1>
+
+          <p>
+            #{{ task.id }}
+          </p>
+
+        </div>
+
+      </div>
+
+      <a
+        class="primary"
+        routerLink="/tasks"
+      >
+        Back to Tasks
+      </a>
+
+    </header>
+
+    <article class="card">
+
+      <div class="title-row">
+
+        <div>
+
+          <span class="eyebrow">
+            {{ task.priority }} PRIORITY
+          </span>
+
+          <h2>
+            {{ task.title }}
+          </h2>
+
+          <p>
+            {{ task.description }}
+          </p>
+
+        </div>
+
+        <span class="status">
+          {{ task.status }}
+        </span>
+
+      </div>
+
+      <div class="info">
+
+        <div>
+
+          <small>
+            Assigned employee
+          </small>
+
+          <strong>
+            {{ employee?.name ?? 'Loading...' }}
+          </strong>
+
+        </div>
+
+        <div>
+
+          <small>
+            Project
+          </small>
+
+          <strong>
+            {{ project?.name ?? 'Loading...' }}
+          </strong>
+
+        </div>
+
+        <div>
+
+          <small>
+            Due date
+          </small>
+
+          <strong>
+            {{ task.dueDate }}
+          </strong>
+
+        </div>
+
+        <div>
+
+          <small>
+            Priority
+          </small>
+
+          <strong>
+            {{ task.priority }}
+          </strong>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  }
+
+</section>

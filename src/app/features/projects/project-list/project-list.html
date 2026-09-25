@@ -1,0 +1,143 @@
+<section class="page">
+
+  <header class="page-header">
+
+    <div>
+      <h1>Projects</h1>
+      <p>Plan and track your projects</p>
+    </div>
+
+    <a
+      routerLink="/projects/add"
+      class="primary"
+    >
+      + Add Project
+    </a>
+
+  </header>
+
+  <section class="filters">
+
+    <input
+      [formControl]="search"
+      placeholder="Search projects..."
+    />
+
+    <select
+      [(ngModel)]="status"
+      (change)="applyFilters()"
+    >
+      <option>All Status</option>
+      <option>Planning</option>
+      <option>In Progress</option>
+      <option>On Hold</option>
+      <option>Completed</option>
+    </select>
+
+  </section>
+
+  @if (errorMessage) {
+
+    <div class="error">
+      {{ errorMessage }}
+    </div>
+
+  }
+
+  @if (loading) {
+
+    <div class="loading">
+      Loading projects...
+    </div>
+
+  }
+
+  <section class="cards">
+
+    @for (project of filtered; track project.id) {
+
+      <article class="project-card">
+
+        <div class="card-top">
+
+          <span class="code">
+            #{{ project.id }}
+          </span>
+
+          <span class="status">
+            {{ project.status }}
+          </span>
+
+        </div>
+
+        <h2>
+          {{ project.name }}
+        </h2>
+
+        <p>
+          {{ project.description }}
+        </p>
+
+        <div class="meta">
+
+          <span>
+            <b>Manager</b>
+            {{ project.manager }}
+          </span>
+
+          <span>
+            <b>Due</b>
+            {{ project.endDate }}
+          </span>
+
+        </div>
+
+        <div class="progress-row">
+
+          <span>
+            Progress
+          </span>
+
+          <strong>
+            {{ project.progress }}%
+          </strong>
+
+        </div>
+
+        <div class="progress">
+          <i [style.width.%]="project.progress"></i>
+        </div>
+
+        <footer>
+
+          <a [routerLink]="['/projects', project.id]">
+            Details
+          </a>
+
+          <a [routerLink]="['/projects', project.id, 'edit']">
+            Edit
+          </a>
+
+          <button
+            (click)="deleteProject(project.id)"
+          >
+            Delete
+          </button>
+
+        </footer>
+
+      </article>
+
+    }
+
+    @if (!loading && filtered.length === 0) {
+
+      <div class="empty">
+        No projects found.
+      </div>
+
+    }
+
+  </section>
+
+</section>

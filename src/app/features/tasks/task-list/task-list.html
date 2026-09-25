@@ -1,0 +1,190 @@
+<section class="page">
+
+  <header class="page-header">
+
+    <div>
+      <h1>Tasks</h1>
+      <p>Assign work and track delivery</p>
+    </div>
+
+    <a
+      routerLink="/tasks/add"
+      class="primary"
+    >
+      + Add Task
+    </a>
+
+  </header>
+
+  <section class="filters">
+
+    <select
+      [(ngModel)]="status"
+      (change)="applyFilters()"
+    >
+      <option>All Status</option>
+      <option>Pending</option>
+      <option>In Progress</option>
+      <option>Completed</option>
+    </select>
+
+    <select
+      [(ngModel)]="employeeId"
+      (change)="applyFilters()"
+    >
+      <option>All Employees</option>
+
+      @for (employee of employees; track employee.id) {
+        <option [value]="employee.id">
+          {{ employee.name }}
+        </option>
+      }
+    </select>
+
+    <select
+      [(ngModel)]="projectId"
+      (change)="applyFilters()"
+    >
+      <option>All Projects</option>
+
+      @for (project of projects; track project.id) {
+        <option [value]="project.id">
+          {{ project.name }}
+        </option>
+      }
+    </select>
+
+    <select
+      [(ngModel)]="priority"
+      (change)="applyFilters()"
+    >
+      <option>All Priority</option>
+      <option>Low</option>
+      <option>Medium</option>
+      <option>High</option>
+    </select>
+
+  </section>
+
+  @if (errorMessage) {
+    <div class="error">
+      {{ errorMessage }}
+    </div>
+  }
+
+  @if (loading) {
+    <div class="loading">
+      Loading tasks...
+    </div>
+  }
+
+  <section class="table-card">
+
+    @if (!loading && filtered.length === 0) {
+
+      <div class="empty">
+        No tasks found. Create a task to get started.
+      </div>
+
+    } @else {
+
+      <div class="scroll">
+
+        <table>
+
+          <thead>
+
+            <tr>
+              <th>Task</th>
+              <th>Employee</th>
+              <th>Project</th>
+              <th>Priority</th>
+              <th>Due date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            @for (task of filtered; track task.id) {
+
+              <tr>
+
+                <td>
+
+                  <a
+                    [routerLink]="['/tasks', task.id]"
+                  >
+                    {{ task.title }}
+                  </a>
+
+                  <small>
+                    #{{ task.id }}
+                  </small>
+
+                </td>
+
+                <td>
+                  {{ employeeName(task.employeeId) }}
+                </td>
+
+                <td>
+                  {{ projectName(task.projectId) }}
+                </td>
+
+                <td>
+
+                  <span
+                    class="priority priority-{{ task.priority.toLowerCase() }}"
+                  >
+                    {{ task.priority }}
+                  </span>
+
+                </td>
+
+                <td>
+                  {{ task.dueDate }}
+                </td>
+
+                <td>
+
+                  <select
+                    class="status-select"
+                    [ngModel]="task.status"
+                    (ngModelChange)="updateStatus(task, $event)"
+                  >
+                    <option>Pending</option>
+                    <option>In Progress</option>
+                    <option>Completed</option>
+                  </select>
+
+                </td>
+
+                <td>
+
+                  <button
+                    class="delete"
+                    (click)="deleteTask(task.id)"
+                  >
+                    Delete
+                  </button>
+
+                </td>
+
+              </tr>
+
+            }
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    }
+
+  </section>
+
+</section>

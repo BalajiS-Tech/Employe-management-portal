@@ -1,0 +1,223 @@
+<div class="login-page">
+
+  <!-- LEFT SIDE -->
+  <section class="login-intro">
+
+    <div class="intro-content">
+
+      <h1>
+        Employee &amp; Project<br>
+        Management Portal
+      </h1>
+
+      <p>
+        Manage your team, projects and tasks
+        in one place.
+      </p>
+
+      <div class="illustration">
+
+        <div class="chart-card">
+          <div class="chart-bar bar-one"></div>
+          <div class="chart-bar bar-two"></div>
+          <div class="chart-bar bar-three"></div>
+          <div class="chart-bar bar-four"></div>
+        </div>
+
+        <div class="person person-one"></div>
+        <div class="person person-two"></div>
+        <div class="person person-three"></div>
+
+        <div class="laptop laptop-one"></div>
+        <div class="laptop laptop-two"></div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- RIGHT SIDE -->
+  <section class="login-form-section">
+
+    <div class="login-form-container">
+
+      <h2>Welcome Back</h2>
+
+      <p class="subtitle">
+        Please sign in to continue
+      </p>
+
+
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="login()"
+      >
+
+        <!-- EMAIL -->
+
+        <div class="form-group">
+
+          <label for="email">
+            Email
+          </label>
+
+          <div class="input-wrapper">
+
+            <span class="input-icon">
+              ✉
+            </span>
+
+            <input
+              id="email"
+              type="email"
+              placeholder="Enter your email"
+              formControlName="email"
+            >
+
+          </div>
+
+
+          @if (
+            loginForm.controls.email.touched &&
+            loginForm.controls.email.invalid
+          ) {
+
+            <small class="error">
+
+              @if (loginForm.controls.email.errors?.['required']) {
+                Email is required
+              }
+
+              @if (loginForm.controls.email.errors?.['email']) {
+                Please enter a valid email
+              }
+
+            </small>
+
+          }
+
+        </div>
+
+
+        <!-- PASSWORD -->
+
+        <div class="form-group">
+
+          <label for="password">
+            Password
+          </label>
+
+          <div class="input-wrapper">
+
+            <span class="input-icon">
+              🔒
+            </span>
+
+            <input
+              id="password"
+              [type]="showPassword ? 'text' : 'password'"
+              placeholder="Enter your password"
+              formControlName="password"
+            >
+
+            <button
+              type="button"
+              class="password-toggle"
+              (click)="togglePassword()"
+            >
+              {{ showPassword ? 'Hide' : 'Show' }}
+            </button>
+
+          </div>
+
+
+          @if (
+            loginForm.controls.password.touched &&
+            loginForm.controls.password.invalid
+          ) {
+
+            <small class="error">
+
+              @if (loginForm.controls.password.errors?.['required']) {
+                Password is required
+              }
+
+              @if (loginForm.controls.password.errors?.['minlength']) {
+                Password must contain at least 6 characters
+              }
+
+            </small>
+
+          }
+
+        </div>
+
+
+        <!-- OPTIONS -->
+
+        <div class="form-options">
+
+          <label class="remember">
+
+            <input
+              type="checkbox"
+              formControlName="rememberMe"
+            >
+
+            <span>
+              Remember me
+            </span>
+
+          </label>
+
+
+          <a href="#">
+            Forgot password?
+          </a>
+
+        </div>
+
+
+        <!-- LOGIN ERROR -->
+
+        @if (loginError) {
+
+          <small class="error login-error">
+            {{ loginError }}
+          </small>
+
+        }
+
+
+        <!-- LOGIN BUTTON -->
+
+        <button
+          type="submit"
+          class="login-button"
+          [disabled]="loginForm.invalid"
+        >
+          Login
+        </button>
+
+
+        <!-- CONTACT ADMIN -->
+
+        <p class="contact-admin">
+
+          Don't have an account?
+
+          <a href="#">
+            Contact Admin
+          </a>
+
+        </p>
+
+      </form>
+
+    </div>
+
+  </section>
+
+</div>

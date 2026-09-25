@@ -1,0 +1,299 @@
+.add-employee-page {
+  padding: 28px 30px;
+  background: #f8fafc;
+  min-height: 100%;
+}
+
+
+/* Page heading */
+
+.page-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.page-title h1 {
+  margin: 0;
+  color: #1f2937;
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.page-title p {
+  margin: 4px 0 0;
+  color: #7c8794;
+  font-size: 12px;
+}
+
+
+/* Back button */
+
+.back-button {
+  width: 34px;
+  height: 34px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 6px;
+
+  color: #344054;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.back-button:hover {
+  background: #e9edf2;
+}
+
+
+/* Form card */
+
+.form-card {
+  max-width: 1050px;
+
+  padding: 25px 28px;
+
+  background: #ffffff;
+
+  border: 1px solid #e7ebf0;
+  border-radius: 8px;
+}
+
+.section-title {
+  margin-bottom: 20px;
+
+  color: #273142;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+
+/* Form layout */
+
+.form-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.left-fields,
+.right-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+
+/* Form fields */
+
+label {
+  display: block;
+
+  color: #475467;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+label span {
+  color: #e53935;
+}
+
+input,
+select {
+  display: block;
+
+  width: 100%;
+  height: 39px;
+
+  margin-top: 6px;
+  padding: 0 11px;
+
+  border: 1px solid #d9dee6;
+  border-radius: 5px;
+
+  background: #ffffff;
+
+  color: #344054;
+  font-size: 12px;
+
+  outline: none;
+}
+
+input:focus,
+select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px #2563eb18;
+}
+
+
+/* Validation message */
+
+small {
+  display: block;
+
+  margin-top: 4px;
+
+  color: #d64545;
+  font-size: 10px;
+  font-weight: 400;
+}
+
+
+/* Profile photo */
+
+.profile-box {
+  min-height: 125px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px dashed #d6dce4;
+  border-radius: 7px;
+}
+
+.profile-circle {
+  width: 58px;
+  height: 58px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: #f0f3f7;
+
+  font-size: 25px;
+}
+
+.upload-button {
+  margin-top: 8px;
+
+  border: 0;
+  background: transparent;
+
+  color: #2563eb;
+  font-size: 11px;
+
+  cursor: pointer;
+}
+
+.upload-button:hover {
+  text-decoration: underline;
+}
+
+.profile-box p {
+  margin: 3px 0 0;
+
+  color: #98a2b3;
+  font-size: 9px;
+}
+
+
+/* Success and error messages */
+
+.success-message,
+.error-message {
+  margin-top: 17px;
+  padding: 10px 12px;
+
+  border-radius: 5px;
+
+  font-size: 12px;
+}
+
+.success-message {
+  background: #eaf8ef;
+  color: #16834c;
+}
+
+.error-message {
+  background: #fff0f0;
+  color: #c43b3b;
+}
+
+
+/* Form buttons */
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+  margin-top: 22px;
+  padding-top: 18px;
+
+  border-top: 1px solid #edf0f3;
+}
+
+.cancel-button,
+.save-button {
+  height: 37px;
+
+  display: inline-grid;
+  place-items: center;
+
+  padding: 0 17px;
+
+  border-radius: 5px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cancel-button {
+  border: 1px solid #d9dee6;
+
+  background: #ffffff;
+
+  color: #475467;
+}
+
+.cancel-button:hover {
+  background: #f7f9fb;
+}
+
+.save-button {
+  border: 1px solid #2563eb;
+
+  background: #2563eb;
+
+  color: #ffffff;
+}
+
+.save-button:hover {
+  background: #1d4ed8;
+}
+
+.save-button:disabled {
+  background: #98a2b3;
+  border-color: #98a2b3;
+
+  cursor: not-allowed;
+}
+
+
+/* Mobile */
+
+@media (max-width: 760px) {
+
+  .add-employee-page {
+    padding: 20px;
+  }
+
+  .form-card {
+    padding: 20px;
+  }
+
+  .form-layout {
+    grid-template-columns: 1fr;
+  }
+
+}

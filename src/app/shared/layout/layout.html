@@ -1,0 +1,161 @@
+<div
+  class="app-shell"
+  [class.sidebar-collapsed]="collapsed()"
+>
+
+  <aside class="sidebar">
+
+    <div class="brand">
+
+      <span class="brand-mark">
+        EP
+      </span>
+
+      @if (!collapsed()) {
+        <span>
+          EMP Portal
+        </span>
+      }
+
+      <button
+        type="button"
+        class="collapse-button"
+        (click)="toggleSidebar()"
+        aria-label="Toggle sidebar"
+      >
+        {{ collapsed() ? '›' : '‹' }}
+      </button>
+
+    </div>
+
+    <nav class="navigation">
+
+      <a
+        routerLink="/dashboard"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="nav-item"
+      >
+        <span>⌂</span>
+
+        @if (!collapsed()) {
+          <span>
+            Dashboard
+          </span>
+        }
+      </a>
+
+      <a
+        routerLink="/employees"
+        routerLinkActive="active"
+        class="nav-item"
+      >
+        <span>♟</span>
+
+        @if (!collapsed()) {
+          <span>
+            Employees
+          </span>
+        }
+      </a>
+
+      <a
+        routerLink="/projects"
+        routerLinkActive="active"
+        class="nav-item"
+      >
+        <span>▣</span>
+
+        @if (!collapsed()) {
+          <span>
+            Projects
+          </span>
+        }
+      </a>
+
+      <a
+        routerLink="/tasks"
+        routerLinkActive="active"
+        class="nav-item"
+      >
+        <span>☑</span>
+
+        @if (!collapsed()) {
+          <span>
+            Tasks
+          </span>
+        }
+      </a>
+
+    </nav>
+
+    <button
+      type="button"
+      class="logout-button"
+      (click)="logout()"
+    >
+      <span>↪</span>
+
+      @if (!collapsed()) {
+        <span>
+          Logout
+        </span>
+      }
+    </button>
+
+  </aside>
+
+  <div class="main-shell">
+
+    <header class="topbar">
+
+      <div class="topbar-search">
+
+        <span>⌕</span>
+
+        <input
+          type="text"
+          placeholder="Search..."
+          aria-label="Global search"
+        />
+
+      </div>
+
+      <div class="user-menu">
+
+        <button
+          type="button"
+          class="notification"
+          aria-label="Notifications"
+        >
+          ♧
+          <i></i>
+        </button>
+
+        <div class="avatar">
+          B
+        </div>
+
+        <div class="user-copy">
+
+          <strong>
+            Balaji
+          </strong>
+
+          <span>
+            Admin
+          </span>
+
+        </div>
+
+      </div>
+
+    </header>
+
+    <main class="page-area">
+      <router-outlet></router-outlet>
+    </main>
+
+  </div>
+
+</div>

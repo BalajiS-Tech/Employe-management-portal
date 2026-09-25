@@ -1,0 +1,413 @@
+<section class="details-page">
+
+  <!-- Loading -->
+  @if (loading) {
+    <div class="loading">
+      Loading employee...
+    </div>
+  }
+
+
+  <!-- Error -->
+  @if (errorMessage) {
+    <div class="error-banner">
+      {{ errorMessage }}
+    </div>
+  }
+
+
+  @if (employee && !loading) {
+
+    <!-- Page Header -->
+    <header class="details-header">
+
+      <div class="heading-left">
+
+        <a
+          routerLink="/employees"
+          class="back"
+          aria-label="Back to employees"
+        >
+          ←
+        </a>
+
+        <div>
+          <h1>
+            {{ editMode ? 'Edit Employee' : 'Employee Details' }}
+          </h1>
+
+          <p>
+            Employee ID {{ employee.id }}
+          </p>
+        </div>
+
+      </div>
+
+
+      <!-- Edit button -->
+      @if (!editMode) {
+
+        <a
+          class="edit-button"
+          [routerLink]="[
+            '/employees',
+            employee.id,
+            'edit'
+          ]"
+        >
+          Edit Employee
+        </a>
+
+      }
+
+    </header>
+
+
+    <!-- ========================= -->
+    <!-- EDIT EMPLOYEE -->
+    <!-- ========================= -->
+
+    @if (editMode) {
+
+      <form
+        class="details-card form-card"
+        [formGroup]="form"
+        (ngSubmit)="save()"
+      >
+
+        <div class="section-title">
+          Employee Information
+        </div>
+
+
+        <div class="grid">
+
+          <!-- Employee ID -->
+          <div class="form-group">
+
+            <label for="employeeId">
+              Employee ID
+            </label>
+
+            <input
+              id="employeeId"
+              type="text"
+              formControlName="id"
+              readonly
+            >
+
+          </div>
+
+
+          <!-- Full Name -->
+          <div class="form-group">
+
+            <label for="name">
+              Full Name
+            </label>
+
+            <input
+              id="name"
+              type="text"
+              formControlName="name"
+              placeholder="Enter full name"
+            >
+
+            @if (
+              form.controls.name.touched &&
+              form.controls.name.invalid
+            ) {
+
+              <small class="field-error">
+                Please enter a valid name.
+              </small>
+
+            }
+
+          </div>
+
+
+          <!-- Email -->
+          <div class="form-group">
+
+            <label for="email">
+              Email
+            </label>
+
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              placeholder="Enter email"
+            >
+
+            @if (
+              form.controls.email.touched &&
+              form.controls.email.invalid
+            ) {
+
+              <small class="field-error">
+                Please enter a valid email.
+              </small>
+
+            }
+
+          </div>
+
+
+          <!-- Phone -->
+          <div class="form-group">
+
+            <label for="phone">
+              Phone
+            </label>
+
+            <input
+              id="phone"
+              type="text"
+              formControlName="phone"
+              placeholder="Enter phone number"
+            >
+
+            @if (
+              form.controls.phone.touched &&
+              form.controls.phone.invalid
+            ) {
+
+              <small class="field-error">
+                Please enter a valid phone number.
+              </small>
+
+            }
+
+          </div>
+
+
+          <!-- Department -->
+          <div class="form-group">
+
+            <label for="department">
+              Department
+            </label>
+
+            <select
+              id="department"
+              formControlName="department"
+            >
+
+              <option value="Development">
+                Development
+              </option>
+
+              <option value="Design">
+                Design
+              </option>
+
+              <option value="Testing">
+                Testing
+              </option>
+
+              <option value="HR">
+                HR
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <!-- Role -->
+          <div class="form-group">
+
+            <label for="role">
+              Role
+            </label>
+
+            <input
+              id="role"
+              type="text"
+              formControlName="role"
+              placeholder="Enter role"
+            >
+
+          </div>
+
+
+          <!-- Status -->
+          <div class="form-group">
+
+            <label for="status">
+              Status
+            </label>
+
+            <select
+              id="status"
+              formControlName="status"
+            >
+
+              <option value="Active">
+                Active
+              </option>
+
+              <option value="Inactive">
+                Inactive
+              </option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+
+        <!-- Form Actions -->
+        <div class="actions">
+
+          <a
+            routerLink="/employees"
+            class="cancel"
+          >
+            Cancel
+          </a>
+
+
+          <button
+            class="save"
+            type="submit"
+            [disabled]="saving"
+          >
+
+            @if (saving) {
+              Saving...
+            } @else {
+              Save Changes
+            }
+
+          </button>
+
+        </div>
+
+      </form>
+
+    }
+
+
+    <!-- ========================= -->
+    <!-- EMPLOYEE DETAILS -->
+    <!-- ========================= -->
+
+    @else {
+
+      <div class="details-card">
+
+        <!-- Profile -->
+        <div class="profile">
+
+          <div class="avatar-large">
+            {{ employee.name.charAt(0).toUpperCase() }}
+          </div>
+
+          <h2>
+            {{ employee.name }}
+          </h2>
+
+          <span
+            class="status"
+            [class.active]="employee.status === 'Active'"
+            [class.inactive]="employee.status === 'Inactive'"
+          >
+            {{ employee.status }}
+          </span>
+
+        </div>
+
+
+        <!-- Employee Information -->
+        <div class="info-grid">
+
+          <div class="info-item">
+
+            <small>
+              Employee ID
+            </small>
+
+            <strong>
+              {{ employee.id }}
+            </strong>
+
+          </div>
+
+
+          <div class="info-item">
+
+            <small>
+              Email
+            </small>
+
+            <strong>
+              {{ employee.email }}
+            </strong>
+
+          </div>
+
+
+          <div class="info-item">
+
+            <small>
+              Phone
+            </small>
+
+            <strong>
+              {{ employee.phone }}
+            </strong>
+
+          </div>
+
+
+          <div class="info-item">
+
+            <small>
+              Department
+            </small>
+
+            <strong>
+              {{ employee.department }}
+            </strong>
+
+          </div>
+
+
+          <div class="info-item">
+
+            <small>
+              Role
+            </small>
+
+            <strong>
+              {{ employee.role || '-' }}
+            </strong>
+
+          </div>
+
+
+          <div class="info-item">
+
+            <small>
+              Status
+            </small>
+
+            <strong>
+              {{ employee.status }}
+            </strong>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    }
+
+  }
+
+</section>

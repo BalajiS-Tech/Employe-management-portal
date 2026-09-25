@@ -1,0 +1,246 @@
+<section class="details-page">
+
+  @if (loading) {
+
+    <div class="message">
+      Loading project...
+    </div>
+
+  }
+
+  @if (errorMessage) {
+
+    <div class="error">
+      {{ errorMessage }}
+    </div>
+
+  }
+
+  @if (project && !loading) {
+
+    <header class="heading">
+
+      <div>
+
+        <a routerLink="/projects">
+          ←
+        </a>
+
+        <div>
+
+          <h1>
+            {{ editMode ? 'Edit Project' : 'Project Details' }}
+          </h1>
+
+          <p>
+            #{{ project.id }}
+          </p>
+
+        </div>
+
+      </div>
+
+      @if (!editMode) {
+
+        <a
+          class="primary"
+          [routerLink]="['/projects', project.id, 'edit']"
+        >
+          Edit Project
+        </a>
+
+      }
+
+    </header>
+
+    @if (editMode) {
+
+      <form
+        class="card"
+        [formGroup]="form"
+        (ngSubmit)="save()"
+      >
+
+        <h2>Project Information</h2>
+
+        <div class="grid">
+
+          <label>
+            ID
+
+            <input
+              formControlName="id"
+              readonly
+            />
+          </label>
+
+          <label>
+            Name
+
+            <input
+              formControlName="name"
+            />
+          </label>
+
+          <label>
+            Manager
+
+            <input
+              formControlName="manager"
+            />
+          </label>
+
+          <label>
+            Status
+
+            <select formControlName="status">
+              <option>Planning</option>
+              <option>In Progress</option>
+              <option>On Hold</option>
+              <option>Completed</option>
+            </select>
+          </label>
+
+          <label>
+            Start Date
+
+            <input
+              type="date"
+              formControlName="startDate"
+            />
+          </label>
+
+          <label>
+            End Date
+
+            <input
+              type="date"
+              formControlName="endDate"
+            />
+          </label>
+
+          <label>
+            Progress
+
+            <input
+              type="number"
+              formControlName="progress"
+            />
+          </label>
+
+          <label class="wide">
+            Description
+
+            <textarea
+              rows="4"
+              formControlName="description"
+            ></textarea>
+          </label>
+
+        </div>
+
+        <footer>
+
+          <a routerLink="/projects">
+            Cancel
+          </a>
+
+          <button type="submit">
+            {{ saving ? 'Saving...' : 'Save Changes' }}
+          </button>
+
+        </footer>
+
+      </form>
+
+    } @else {
+
+      <article class="card">
+
+        <div class="project-top">
+
+          <div>
+
+            <span class="eyebrow">
+              PROJECT
+            </span>
+
+            <h2>
+              {{ project.name }}
+            </h2>
+
+            <p>
+              {{ project.description }}
+            </p>
+
+          </div>
+
+          <span class="status">
+            {{ project.status }}
+          </span>
+
+        </div>
+
+        <div class="info">
+
+          <div>
+
+            <small>
+              Manager
+            </small>
+
+            <strong>
+              {{ project.manager }}
+            </strong>
+
+          </div>
+
+          <div>
+
+            <small>
+              Start date
+            </small>
+
+            <strong>
+              {{ project.startDate }}
+            </strong>
+
+          </div>
+
+          <div>
+
+            <small>
+              End date
+            </small>
+
+            <strong>
+              {{ project.endDate }}
+            </strong>
+
+          </div>
+
+          <div>
+
+            <small>
+              Progress
+            </small>
+
+            <strong>
+              {{ project.progress }}%
+            </strong>
+
+          </div>
+
+        </div>
+
+        <div class="progress">
+          <i [style.width.%]="project.progress"></i>
+        </div>
+
+      </article>
+
+    }
+
+  }
+
+</section>

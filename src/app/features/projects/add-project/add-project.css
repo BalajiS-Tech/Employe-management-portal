@@ -1,0 +1,213 @@
+.form-page {
+  padding: 28px 30px;
+  background: #f8fafc;
+  min-height: 100%;
+}
+
+
+/* Page header */
+
+.form-page > header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 18px;
+}
+
+.form-page > header > a {
+  color: #344054;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.form-page h1 {
+  margin: 0;
+
+  font-size: 23px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.form-page header p {
+  margin: 4px 0 0;
+
+  color: #7c8794;
+  font-size: 12px;
+}
+
+
+/* Form */
+
+form {
+  max-width: 1050px;
+
+  padding: 26px;
+
+  background: #ffffff;
+
+  border: 1px solid #e7ebf0;
+  border-radius: 8px;
+}
+
+form h2 {
+  margin: 0 0 20px;
+
+  color: #273142;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+
+/* Form grid */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+label {
+  color: #475467;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.wide {
+  grid-column: 1 / -1;
+}
+
+
+/* Inputs */
+
+input,
+select,
+textarea {
+  display: block;
+
+  width: 100%;
+
+  margin-top: 6px;
+  padding: 10px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #d9dee6;
+  border-radius: 5px;
+
+  background: #ffffff;
+
+  color: #344054;
+  font-size: 12px;
+
+  outline: none;
+}
+
+input,
+select {
+  height: 39px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px #2563eb18;
+}
+
+
+/* Error message */
+
+.error {
+  margin-top: 15px;
+  padding: 10px;
+
+  background: #fff0f0;
+  color: #c43b3b;
+
+  border-radius: 5px;
+
+  font-size: 12px;
+}
+
+
+/* Form actions */
+
+footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+  margin-top: 22px;
+  padding-top: 18px;
+
+  border-top: 1px solid #edf0f3;
+}
+
+footer a,
+footer button {
+  height: 36px;
+
+  display: grid;
+  place-items: center;
+
+  padding: 0 16px;
+
+  border-radius: 5px;
+
+  font-size: 12px;
+
+  text-decoration: none;
+  cursor: pointer;
+}
+
+footer a {
+  border: 1px solid #d9dee6;
+
+  background: #ffffff;
+
+  color: #475467;
+}
+
+footer a:hover {
+  background: #f7f9fb;
+}
+
+footer button {
+  border: 1px solid #2563eb;
+
+  background: #2563eb;
+
+  color: #ffffff;
+}
+
+footer button:hover {
+  background: #1d4ed8;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+  .form-page {
+    padding: 20px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wide {
+    grid-column: auto;
+  }
+
+  form {
+    padding: 20px;
+  }
+
+}
